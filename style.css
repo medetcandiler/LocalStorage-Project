@@ -13,7 +13,7 @@ font-family: 'Shadows Into Light', cursive;
 min-height: 100vh;
 }
 
-button {
+.button {
 height: fit-content;
 cursor: pointer;
 color: #04202c;
@@ -47,7 +47,7 @@ padding: 10px;
 outline: none;
 }
 
-.to-do-input button {
+.to-do-input .button {
 color: #5b7065;
 font-family: inherit;
 border: none;

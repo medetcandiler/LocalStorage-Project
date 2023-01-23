@@ -42,18 +42,6 @@ function displayArrItems(){
     cancelListener()
 }
 
-function cancelListener(){
-    let cancelBtnDOM=document.querySelectorAll('.cancelBtn')
-    let updateControllersDOM=document.querySelectorAll('.update-controller');
-    let textAreaDOM=document.querySelectorAll('#textArea')
-    cancelBtnDOM.forEach((item, i) => {
-        item.addEventListener('click', () => { 
-            updateControllersDOM[i].style.display= 'none'
-            textAreaDOM[i].disabled=true
-        })
-    })
-}
-
 function deleteListener(){
     let deleteBtnDOM=document.querySelectorAll('.deleteBtn');
     deleteBtnDOM.forEach((item, i)=>{
@@ -61,14 +49,10 @@ function deleteListener(){
     })
 }
 
-function saveListener(){
-    let saveBtnDOM=document.querySelectorAll('.saveBtn')
-    let textAreaDOM=document.querySelectorAll('#textArea')
-    saveBtnDOM.forEach((item, i ) => {
-        item.addEventListener('click', () => {
-            updateItem(textAreaDOM[i].value, i)
-        })
-    })
+function deleteItem(i){
+    dataArr.splice(i, 1)
+    localStorage.setItem('items', JSON.stringify(dataArr))
+    location.reload()
 }
 
 function editListener(){
@@ -83,16 +67,31 @@ function editListener(){
     })
 }
 
+function cancelListener(){
+    let cancelBtnDOM=document.querySelectorAll('.cancelBtn')
+    let updateControllersDOM=document.querySelectorAll('.update-controller');
+    let textAreaDOM=document.querySelectorAll('#textArea')
+    cancelBtnDOM.forEach((item, i) => {
+        item.addEventListener('click', () => { 
+            updateControllersDOM[i].style.display= 'none'
+            textAreaDOM[i].disabled=true
+        })
+    })
+}
 
-function updateItem(text, i){
-    dataArr[i] = text
-    localStorage.setItem('items', JSON.stringify(dataArr))
-    location.reload()
+function saveListener(){
+    let saveBtnDOM=document.querySelectorAll('.saveBtn')
+    let textAreaDOM=document.querySelectorAll('#textArea')
+    saveBtnDOM.forEach((item, i ) => {
+        item.addEventListener('click', () => {
+            updateItem(textAreaDOM[i].value, i)
+        })
+    })
 }
 
 
-function deleteItem(i){
-    dataArr.splice(i, 1)
+function updateItem(text, i){
+    dataArr[i] = text
     localStorage.setItem('items', JSON.stringify(dataArr))
     location.reload()
 }
